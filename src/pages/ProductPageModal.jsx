@@ -10,7 +10,8 @@ const ProductPageModal = ({ product, isOpen, onRequestClose }) => {
     <ReactModal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
-      className="ReactModal-content"
+      contentLabel="Product Details"
+      className="modal-content"
       overlayClassName="modal-overlay"
     >
       <div className="product-page-modal">

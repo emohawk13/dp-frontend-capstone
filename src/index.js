@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ReactModal from "react-modal";
 import App from "./App";
+import Modal from "react-modal";
 
-ReactModal.setAppElement("#root");
+Modal.setAppElement("#root");
 
 ReactDOM.render(
   <React.StrictMode>

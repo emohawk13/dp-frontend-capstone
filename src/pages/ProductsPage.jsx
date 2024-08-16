@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ProductPageModal from "./ProductPageModal";
+import ReactModal from "react-modal";
 import "../styles/common-styles.scss";
+
+ReactModal.setAppElement("#root");
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
@@ -62,7 +64,7 @@ const ProductsPage = () => {
     });
 
   return (
-    <div className="products-page" inert="true">
+    <div className="products-page">
       <div className="filters">
         {["electronics", "jewelery", "men's clothing", "women's clothing"].map(
           (category) => (
@@ -131,12 +133,37 @@ const ProductsPage = () => {
           )}
         </div>
       </div>
-      {isModalOpen && (
-        <ProductPageModal
-          product={selectedProduct}
+
+      {isModalOpen && selectedProduct && (
+        <ReactModal
           isOpen={isModalOpen}
           onRequestClose={closeModal}
-        />
+          contentLabel="Product Details Modal"
+          className="modal-content"
+          overlayClassName="modal-overlay"
+          shouldFocusAfterRender={true}
+          shouldCloseOnOverlayClick={true}
+          shouldReturnFocusAfterClose={true}
+        >
+          <div className="product-page">
+            <img
+              src={selectedProduct.image}
+              alt={selectedProduct.title}
+              className="modal-product-image"
+            />
+            <h1>{selectedProduct.title}</h1>
+            <p>{selectedProduct.category}</p>
+            <p>${selectedProduct.price}</p>
+            <p>{selectedProduct.description}</p>
+            <p>
+              Rating: {selectedProduct.rating.rate} (
+              {selectedProduct.rating.count} reviews)
+            </p>
+            <button onClick={closeModal} className="close-modal-button">
+              Close
+            </button>
+          </div>
+        </ReactModal>
       )}
     </div>
   );
