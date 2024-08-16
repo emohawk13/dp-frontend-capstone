@@ -159,5 +159,3 @@ Each should be divided into their own section on the page with space and styling
 NOTE: While writing your reflection for the about page you want to sound like a developer. While reflecting on the course use each term or concept we discussed in class, define each term, and connect it to how it improved your project.
 
 NOTE: Employers want to see your journey in the about page. Vulnerability is a strong skill employers will connect with. Be proud of each failure that brought you to the correct answer. Write your reflection in a narrative (or story) format. Speak about the challenges and do not connect them to yourself. For example, don’t say: “I struggled with properly sizing the input box”. Rather, say: “Because of the positioning of the left menu, the input box had to be resized in a new way.” This will showcase your vulnerability as a strength to continue finding solutions rather than showcasing what weaknesses you might bring to your future employment.
-
-Place a link to your git repository in the field below.
