@@ -69,7 +69,7 @@ const ProductShowcase = ({
           <div className="product-info">
             <h3>{product.title}</h3>
             <p>${product.price.toFixed(2)}</p>
-            <Link to={`/product/${product.id}`} className="more-link">
+            <Link to={`/products?product=${product.id}`} className="more-link">
               More
             </Link>
           </div>

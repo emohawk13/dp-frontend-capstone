@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeMode";
 
 const AboutPage = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
-    <div className="about-page">
+    <div className={`about-page ${theme === "dark" ? "dark-mode" : ""}`}>
       <h1>About Our Project</h1>
       <section>
         <h2>Project Overview</h2>

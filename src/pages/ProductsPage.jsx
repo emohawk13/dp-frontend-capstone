@@ -1,29 +1,40 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ReactModal from "react-modal";
+import { useLocation } from "react-router-dom";
+import ProductPageModal from "./ProductPageModal";
 import "../styles/common-styles.scss";
-
-ReactModal.setAppElement("#root");
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortType, setSortType] = useState("id");
   const [sortOrder, setSortOrder] = useState("asc");
-  const [hoveredProduct, setHoveredProduct] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const productId = queryParams.get("product");
 
   useEffect(() => {
     axios
       .get("https://fakestoreapi.com/products")
       .then((response) => {
         setProducts(response.data);
+        if (productId) {
+          const product = response.data.find(
+            (p) => p.id === parseInt(productId)
+          );
+          if (product) {
+            setSelectedProduct(product);
+            setIsModalOpen(true);
+          }
+        }
       })
       .catch((error) => {
         console.error("Error fetching the products:", error);
       });
-  }, []);
+  }, [productId]);
 
   const handleCheckboxChange = (category) => {
     setSelectedCategories((prev) =>
@@ -33,11 +44,11 @@ const ProductsPage = () => {
     );
   };
 
-  const handleProductHover = (product) => {
-    setHoveredProduct(product);
+  const handleProductClick = (product) => {
+    setSelectedProduct(product);
   };
 
-  const handleProductClick = (product) => {
+  const handleProductDetailsClick = (product) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };
@@ -102,8 +113,12 @@ const ProductsPage = () => {
           {filteredProducts.map((product) => (
             <div
               key={product.id}
-              className="product-card"
-              onMouseEnter={() => handleProductHover(product)}
+              className={`product-card ${
+                selectedProduct && selectedProduct.id === product.id
+                  ? "selected"
+                  : ""
+              }`}
+              onClick={() => handleProductClick(product)}
             >
               <img
                 src={product.image}
@@ -114,18 +129,18 @@ const ProductsPage = () => {
           ))}
         </div>
         <div className="product-preview">
-          {hoveredProduct && (
+          {selectedProduct && (
             <div className="selected-product">
               <img
-                src={hoveredProduct.image}
-                alt={hoveredProduct.title}
+                src={selectedProduct.image}
+                alt={selectedProduct.title}
                 className="hovered-product-image"
               />
-              <h3>{hoveredProduct.title}</h3>
-              <p>${hoveredProduct.price.toFixed(2)}</p>
+              <h3>{selectedProduct.title}</h3>
+              <p>${selectedProduct.price.toFixed(2)}</p>
               <button
                 className="more-details-button"
-                onClick={() => handleProductClick(hoveredProduct)}
+                onClick={() => handleProductDetailsClick(selectedProduct)}
               >
                 More Details
               </button>
@@ -135,35 +150,11 @@ const ProductsPage = () => {
       </div>
 
       {isModalOpen && selectedProduct && (
-        <ReactModal
+        <ProductPageModal
+          product={selectedProduct}
           isOpen={isModalOpen}
           onRequestClose={closeModal}
-          contentLabel="Product Details Modal"
-          className="modal-content"
-          overlayClassName="modal-overlay"
-          shouldFocusAfterRender={true}
-          shouldCloseOnOverlayClick={true}
-          shouldReturnFocusAfterClose={true}
-        >
-          <div className="product-page">
-            <img
-              src={selectedProduct.image}
-              alt={selectedProduct.title}
-              className="modal-product-image"
-            />
-            <h1>{selectedProduct.title}</h1>
-            <p>{selectedProduct.category}</p>
-            <p>${selectedProduct.price}</p>
-            <p>{selectedProduct.description}</p>
-            <p>
-              Rating: {selectedProduct.rating.rate} (
-              {selectedProduct.rating.count} reviews)
-            </p>
-            <button onClick={closeModal} className="close-modal-button">
-              Close
-            </button>
-          </div>
-        </ReactModal>
+        />
       )}
     </div>
   );

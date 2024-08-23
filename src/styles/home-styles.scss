@@ -1,0 +1,25 @@
+@import "./mixins.scss";
+@import "./colors.scss";
+
+.home-page {
+  @include flex-container(column);
+  height: 90vh;
+  width: 100%;
+  .home-detail {
+    padding: 2% 0;
+    text-align: center;
+    border: 1px solid $border-color;
+    border-radius: 20px;
+    width: 80%;
+    body.light {
+      content: "Light";
+      color: $light-text-color;
+      background-color: $light-container-bg-color;
+    }
+  }
+  body.dark {
+    content: "Light";
+    color: $light-text-color;
+    background-color: $light-bg-color;
+  }
+}
