@@ -1,6 +1,8 @@
 import React, { useState, useContext } from "react";
-import Button from "../components/Button";
-import { ThemeContext } from "../contexts/ThemeMode";
+import Button from "../Button";
+import { ThemeContext } from "../../contexts/ThemeMode";
+
+import "../../styles/styled-components/contact-styles.scss";
 
 const ContactPage = () => {
   const [form, setForm] = useState({
@@ -74,9 +76,11 @@ const ContactPage = () => {
             placeholder="Message"
             required
           />
-          <Button type="submit" disabled={!isFormValid}>
-            Send Message
-          </Button>
+          <div className="button-contact">
+            <Button type="submit" disabled={!isFormValid}>
+              Send Message
+            </Button>
+          </div>
         </form>
       </div>
     </div>

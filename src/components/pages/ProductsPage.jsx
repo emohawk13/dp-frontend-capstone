@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import ProductPageModal from "./ProductPageModal";
-import "../styles/common-styles.scss";
+import "../../styles/common-styles.scss";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([]);

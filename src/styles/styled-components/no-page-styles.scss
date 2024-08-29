@@ -1,0 +1,28 @@
+@mixin nopage {
+  text-align: center;
+  padding: 50px;
+  color: $not-found-container;
+
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: $button-background-color;
+    color: $button-color;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $button-hover-color;
+    }
+  }
+}

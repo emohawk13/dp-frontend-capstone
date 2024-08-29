@@ -1,0 +1,54 @@
+@mixin about {
+  padding: 2%;
+  background-color: $light-bg-color;
+  color: $light-text-color;
+  line-height: 1.6;
+  font-family: Arial, sans-serif;
+  margin-top: -4%;
+
+  h1 {
+    font-size: 1.5rem;
+    color: $text-primary-color;
+  }
+
+  .card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px $shadowed;
+    background-color: $filter-background;
+    border: 1px solid $border-color;
+    margin: 1%;
+
+    h2 {
+      font-size: 1.25rem;
+      color: $nav-background;
+    }
+
+    p {
+      font-size: 1.125rem;
+      color: $light-text-color;
+    }
+  }
+
+  &.dark-mode {
+    background-color: $dark-bg-color;
+    color: $dark-text-color;
+
+    h1 {
+      color: $dark-text-color;
+    }
+
+    section {
+      background-color: $dark-bg-color;
+      box-shadow: 0 4px 8px $product-shadowed;
+
+      h2 {
+        color: $nav-bar-icon-color;
+      }
+
+      p {
+        color: $dark-text-color;
+      }
+    }
+  }
+}

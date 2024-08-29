@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import Button from "../components/Button";
+import Button from "../Button";
 import Modal from "react-modal";
-import { CartContext } from "../contexts/CartFunctionality";
-import { ThemeContext } from "../contexts/ThemeMode";
+import { CartContext } from "../../contexts/CartFunctionality";
+import { ThemeContext } from "../../contexts/ThemeMode";
 
 Modal.setAppElement("#root");
 

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ReactModal from "react-modal";
-import Button from "../components/Button";
-import { CartContext } from "../contexts/CartFunctionality";
-import "../styles/common-styles.scss";
+import Button from "../Button";
+import { CartContext } from "../../contexts/CartFunctionality";
+import "../../styles/common-styles.scss";
 
 const ProductPageModal = ({ product, isOpen, onRequestClose }) => {
   const { addToCart } = useContext(CartContext);

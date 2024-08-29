@@ -1,6 +1,6 @@
 import React from "react";
-import ProductShowcase from "../components/ProductShowcase";
-import "../styles/home-styles.scss";
+import ProductShowcase from "../ProductShowcase";
+import "../../styles/styled-components/home-styles.scss";
 
 const HomePage = () => {
   return (
